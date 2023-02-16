@@ -13,3 +13,14 @@ export function viewFile(file) {
         '" frameborder="0" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;" allowfullscreen></iframe>'
     )
 };
+
+const idMatchLoop = (data, key, value) => {
+    for (let i = 0; i < data.length; i++) {
+        if (data[i][key] === value) { 
+          return [data[i]]
+        }
+    }
+    return ""
+  }
+
+  // idMatchLoop(originData.origin, '_id', e.pol)
