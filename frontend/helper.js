@@ -1,10 +1,12 @@
 /**Add your frontend common function here */
 
-const idMatchLoop = (data, id) => {
+const idMatchLoop = (data, key, value) => {
     for (let i = 0; i < data.length; i++) {
-        if (data[i] === id) { 
+        if (data[i][key] === value) { 
           return [data[i]]
         }
     }
     return ""
-}
+  }
+
+  // idMatchLoop(originData.origin, '_id', e.pol)
