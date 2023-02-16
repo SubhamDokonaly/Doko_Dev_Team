@@ -69,10 +69,6 @@ function comparePassword(currentpassword,bodypassword) {
  
 comparePassword(currentpassword,bodypassword)
 
-
-
-
-
 function returnFunction (statusData, responseMsg, responseData) {
     return res.send({status: statusData, response: responseMsg, data: responseData})
 }
