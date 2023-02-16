@@ -1,9 +1,6 @@
 /**expect mongose function other function added here */
 
 
-function removeSpaces(x) {
-    return x.split(" ").filter((y) => y).join(" ");
-}
 const isValidRequestBody = function (requestBody) {
     return Object.keys(requestBody).length > 0;
 }
@@ -74,3 +71,8 @@ comparePassword(currentpassword,bodypassword)
 
 
 
+
+
+function returnFunction (statusData, responseMsg, responseData) {
+    return res.send({status: statusData, response: responseMsg, data: responseData})
+}
