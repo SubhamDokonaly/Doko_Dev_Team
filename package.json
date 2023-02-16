@@ -1,0 +1,26 @@
+{
+  "name": "doko_dev_team",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SubhamDokonaly/Doko_Dev_Team.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SubhamDokonaly/Doko_Dev_Team/issues"
+  },
+  "homepage": "https://github.com/SubhamDokonaly/Doko_Dev_Team#readme",
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.9",
+    "react": "^18.2.0",
+    "react-hook-form": "^7.43.1"
+  }
+}
