@@ -15,8 +15,3 @@ export const containsOnlyAlphabets = (str) => {
     const Alphabet = /^[A-Za-z\s]*$/;
     return Alphabet.test(str);
 };
-
-export const downloadExcel = (file) => {
-    let fileUrl = window.URL.createObjectURL(file);
-    window.location.href = fileUrl;
-};
