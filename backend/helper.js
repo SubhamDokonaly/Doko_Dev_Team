@@ -188,3 +188,16 @@ async function downloadFileAzure(lclbookingId) {
       res.send(data);
     }
 }
+
+//Create Milestone Directory - createDir(fileuploadpath)
+const createDir = async (path) => {
+    await fs.mkdir(path, { recursive: true }, (err) => {
+        if (err) throw err;
+    });
+}
+
+//Create Milestone File - createMilestoneFile(`${filePath}/${lclbookingId}/${fileName}`, base64Pdf, 'base64')
+const createMilestoneFile = async (filePath, fileData, fileEncoding) => {
+    await fs.writeFile(filePath, fileData, { encoding: fileEncoding })
+}
+
