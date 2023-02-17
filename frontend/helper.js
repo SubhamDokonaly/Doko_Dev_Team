@@ -14,6 +14,7 @@ export function viewFile(file) {
     )
 };
 
+//ID Match Loop - idMatchLoop(originData.origin, '_id', e.pol)
 const idMatchLoop = (data, key, value) => {
     for (let i = 0; i < data.length; i++) {
         if (data[i][key] === value) { 
@@ -23,7 +24,7 @@ const idMatchLoop = (data, key, value) => {
     return ""
   }
 
-  // idMatchLoop(originData.origin, '_id', e.pol)
+
 
 /**      File Reader Function         */
 export const fileReaderFunction = (file,fileType,fileSize) =>{
