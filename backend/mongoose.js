@@ -6,7 +6,10 @@
  * insertMany
  * insertOne
  * updateOne
- * 
+ * findByIdAndUpdate
+ * distinct
+ * deleteOne
+ * deleteMany
  * 
  */
 function updateDocument(collection, filter, update, options) {
@@ -47,14 +50,60 @@ async function insertSingleDocument(collection, document) {
 
 async function updateOneDocument(collection, filter, update) {
     try {
-      const result = await collection.updateOne(filter, update);
-      return result;
+        const result = await collection.updateOne(filter, update);
+        return result;
     } catch (error) {
-      console.error("Error updating document: ", error);
-      throw error;
+        console.error("Error updating document: ", error);
+        throw error;
     }
-  }
-  
+}
+
+const { ObjectId } = require('mongodb');
+
+async function findByIdAndUpdate(collection, id, update) {
+    try {
+        const filter = { _id: new ObjectId(id) };
+        const result = await collection.updateOne(filter, update);
+        return result;
+    } catch (error) {
+        console.error("Error finding and updating document by ID: ", error);
+        throw error;
+    }
+}
+
+async function getDistinctValues(collection, field) {
+    try {
+        const result = await collection.distinct(field)
+        return result;
+    } catch (error) {
+        console.error("Error : in get distinct data", error);
+        throw error;
+    }
+}
+//   async function main() {
+//     const distinctValues = await getDistinctValues(collection, 'myField');
+//     console.log(distinctValues);
+//   }
+
+async function deleteOneDocument(collection, filter, options) {
+    try {
+        const result = await collection.deleteOne(filter, options)
+        return result;   //return true/false
+    } catch (error) {
+        console.error("Error : in deleteOne doc", error);
+        throw error;
+    }
+}
+
+async function deleteOneDocument(collection, filter, options) {
+    try {
+        const result = await collection.deleteMany(filter, options)
+        return result;   //return true/false
+    } catch (error) {
+        console.error("Error : in deletemany doc", error);
+        throw error;
+    }
+}
 
 
 
