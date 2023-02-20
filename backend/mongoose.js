@@ -95,7 +95,7 @@ async function deleteOneDocument(collection, filter, options) {
     }
 }
 
-async function deleteOneDocument(collection, filter, options) {
+async function deleteManyDocument(collection, filter, options) {
     try {
         const result = await collection.deleteMany(filter, options)
         return result;   //return true/false
