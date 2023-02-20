@@ -26,70 +26,79 @@ const OpenFileNewWindow = (fileData) => {
 const idMatchLoop = (data, key, value) => {
   for (let i = 0; i < data.length; i++) {
     if (data[i][key] === value) {
-      return [data[i]]
+      return [data[i]];
     }
   }
-  return ""
-}
-
-// idMatchLoop(originData.origin, '_id', e.pol)
+  return "";
+};
 
 /**      File Reader Function         */
-export const fileReaderFunction = (file, fileType, fileSize) => {
-  let fileDatas = {}
-  let file = file.target.files[0];
+const fileReaderFunction = (event, fileType, fileSize, errorMessage) => {
+  let fileDatas = {};
+  let file = event.target.files[0];
   let reader = new FileReader();
-  reader.readAsArrayBuffer(file)
-  if (e.target.files.length > 0) {
+  reader.readAsArrayBuffer(file);
+  if (event.target.files.length > 0) {
     return new Promise((resolve, reject) => {
       reader.onload = (e) => {
         if (!file) {
-          reject("Upload file first");
+          reject(errorMessage.NoFileError);
         } else if (!fileType.includes(file.type)) {
           reject(`Upload only ${fileType}`);
         } else if (file.size > fileSize) {
           reject(`Upload file under ${fileSize} MB`);
         }
-        fileDatas.fileData = e.target.result
-        fileDatas.fileName = file.name
-        resolve(fileDatas)
-      }
-    })
+        fileDatas.fileData = event.target.result;
+        fileDatas.fileName = file.name;
+        fileDatas.fileSize = file.size;
+        fileDatas.fileType = file.type;
+        resolve(fileDatas);
+      };
+    });
   }
-}
+};
 
 /**      File Reader Function Calling format and handling the output      */
-//   const handleFile =  (e) => {
-//     fileReaderFunction(e,fileType,fileSize)
-//     .then((data) => { 
-//         Get the resolved output
-//     })
-//     .catch((error) => { 
-//         Get the rejected ouput
-//     }); 
-//   };
+
+// const handleFile = (e) => {
+//   let errorMessage={
+//     NoFileError:`Upload file first`,
+//     fileTypeErr:`Upload only Pdf`,
+//     fileSizeErr:`Upload file under 3 MB`,
+//   }
+//   fileReaderFunction(e,fileType,fileSize,errorMessage).then((data) => {
+//       Get the resolved output
+//   }).catch((error) => {
+//        Get the rejected ouput
+//   });
+// };
 
 /**  fetchFunction for fetching Data */
-async function fetchData(
-  { url, method = "GET", Authorization, Type } = {},
-  data
-) {
+async function fetchData({ url, method = "GET", headers = {} } = {}, data) {
+  if (typeof url !== "string") {
+    return { result: false, data: "URL is null / undefined" };
+  }
+  headers["Content-Type"] = "application/json";
   let fetchObject = {
     method: method,
-    headers: {
-      Authorization: Authorization,
-      Type: Type,
-      "Content-Type": "application/json",
-    },
+    headers: headers,
   };
   if (method === "POST") {
-    fetchObject.headers.body = JSON.stringify(data);
+    if (data === null || data === undefined) {
+      return { result: false, data: "Data is not given for post call" };
+    } else {
+      fetchObject.headers.body = JSON.stringify(data);
+    }
   }
   try {
     let response = await fetch(url, fetchObject);
     let responseData = await response.json();
     if (responseData.status === 1 || responseData.status === true) {
-      return { result: true, data: JSON.parse(responseData.response) };
+      if (typeof responseData.response === "string") {
+        return { result: true, data: JSON.parse(responseData.response) };
+      } else {
+        return { result: true, data: responseData.response };
+      }
     } else {
       return { result: false, data: responseData.response };
     }
