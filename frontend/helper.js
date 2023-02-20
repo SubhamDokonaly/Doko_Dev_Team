@@ -33,27 +33,28 @@ const idMatchLoop = (data, key, value) => {
 };
 
 /**      File Reader Function         */
-const fileReaderFunction = (event, fileType, fileSize, errorMessage) => {
+const fileReaderFunction = (file,fileType,fileSize,errorMessage) =>{
   let fileDatas = {};
-  let file = event.target.files[0];
-  let reader = new FileReader();
+  let file = file.target.files[0];
+  let reader = new FileReader ();
   reader.readAsArrayBuffer(file);
-  if (event.target.files.length > 0) {
+  if (file.target.files.length > 0) {
     return new Promise((resolve, reject) => {
-      reader.onload = (e) => {
-        if (!file) {
-          reject(errorMessage.NoFileError);
-        } else if (!fileType.includes(file.type)) {
-          reject(`Upload only ${fileType}`);
-        } else if (file.size > fileSize) {
-          reject(`Upload file under ${fileSize} MB`);
-        }
+      reader.onload = (event) => {
+          {(!event || !fileType || !fileSize || !errorMessage) && reject("Some arguments are missing")}
+          {typeof fileType !== 'string' && reject("fileType should be a String")}
+          {typeof fileSize !== 'number' && reject("fileSize should be a Number")}
+          {typeof errorMessage !== "object" && reject("errorMessage should be an Object")}
+          {(!errorMessage.NoFileError || !errorMessage.fileTypeErr || !errorMessage.fileSizeErr) && reject("Some Keys of errorMessage Object is missing")}
+          {!file && reject(errorMessage.NoFileError)}
+          {!fileType.includes(file.type) && reject(errorMessage.fileTypeErr)} 
+          {file.size > fileSize && reject(errorMessage.fileSizeErr)}
         fileDatas.fileData = event.target.result;
         fileDatas.fileName = file.name;
         fileDatas.fileSize = file.size;
         fileDatas.fileType = file.type;
         resolve(fileDatas);
-      };
+      }
     });
   }
 };
