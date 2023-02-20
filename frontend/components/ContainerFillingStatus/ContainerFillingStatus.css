@@ -1,0 +1,16 @@
+.progress {
+    height: 45px !important;
+    width: 134px !important;
+    border-radius: 0 !important;
+    background-image: url('./Isolation.png') !important;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    color: white !important;
+    background: linear-gradient(to right, rgb(133, 133, 133), black) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    margin: 3px !important;
+  }

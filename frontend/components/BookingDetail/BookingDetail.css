@@ -1,0 +1,152 @@
+.detailcon {
+    border-radius: 5px;
+    width: 33%;
+    border: 1px solid #D9D9D9;
+}
+
+.detaildiv {
+    background: #FFFFFF;
+    border-radius: 5px 5px 0px 0px;
+    width: 100%;
+    padding: 15px 0px;
+    box-shadow: 0px 3px 18px rgba(0, 0, 0, 0.05);
+}
+
+.portsdetail {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    color: #333333;
+}
+
+.cbmsdetail {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #828282;
+}
+
+.cbmsdetail>span {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    color: #272727;
+}
+
+.containerdetail {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 15px;
+}
+
+.containertxt {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 12px;
+    color: #828282;
+    padding-top: 5px;
+}
+
+.start {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 14px;
+    text-align: right;
+    color: #828282;
+}
+
+.startval {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 19px;
+    text-align: right;
+    color: #272727;
+}
+
+.vesseldiv {
+    background: rgba(225, 225, 224, 0.15);
+    width: 100%;
+    padding: 10px 15px;
+}
+
+.vesseltxt {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 14px;
+    color: #828282;
+}
+
+.vesselval {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 14px;
+    color: #272727;
+}
+
+.chargeinclude {
+    padding: 0px 15px;
+    margin-top: 5px;
+}
+
+.chargeincludetxt {
+    font-weight: 400;
+    background: rgba(217, 217, 217, 0.31);
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 13px;
+    line-height: 14px;
+    color: #828282;
+    margin: 0;
+    text-align: center;
+}
+
+.infoicon {
+    width: 23px !important;
+    padding-top: 3px;
+    padding-right: 5px;
+}
+
+.portalignments {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+    align-items: flex-start;
+}
+
+.trendingdiv {
+    background-image: url('./trending.png');
+    background-repeat: no-repeat;
+    width: 107px;
+    text-align: center;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    padding-top: 3px;
+}
+
+.trendingdiv>p {
+    color: #FFFFFF;
+    font-weight: bold;
+    margin: 0;
+    font-size: 13px;
+    padding-left: 5px;
+}
+.fillingdiv {
+    background-image: url('./filling.png');
+    background-repeat: no-repeat;
+    width: 107px;
+    text-align: center;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    padding-top: 3px;
+    padding-left: 8px;
+}
+
+.fillingdiv>p {
+    color: #FFFFFF;
+    font-weight: bold;
+    margin: 0;
+    font-size: 13px;
+    padding-left: 5px;
+}
