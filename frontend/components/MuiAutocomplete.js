@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Autocomplete, TextField, CircularProgress } from "@mui/material";
 import { Controller } from "react-hook-form";
 
@@ -8,11 +8,23 @@ function AutocompleteSelect({
   textFieldStyle = {},
   options,
   control,
-  label,
+  label = "",
   onChange,
   registerName,
   errorObject,
 }) {
+  if (control === null || control === undefined) {
+    return "Control of useForm hook is not provided";
+  }
+  if (typeof registerName !== "string") {
+    return "Register name is not given";
+  }
+  if (typeof errorObject !== "object") {
+    return "Error Object is not given";
+  }
+  if (typeof options !== "object" && !options.length) {
+    return "Options is not an Array";
+  }
   return (
     <div className={divClassname}>
       <Controller
@@ -21,8 +33,11 @@ function AutocompleteSelect({
         render={({ field }) => (
           <Autocomplete
             {...field}
-            onChange={(event,value) => {field.onChange(value);onChange}}
-            isOptionEqualToValue={(option,value) => option === value}
+            onChange={(event, value) => {
+              field.onChange(value);
+              onChange;
+            }}
+            isOptionEqualToValue={(option, value) => option === value}
             sx={autocompleteStyle}
             options={options}
             renderInput={(params) => (
@@ -50,11 +65,23 @@ function AsyncAutoComplete({
   textFieldStyle = {},
   options,
   control,
-  label,
+  label = "",
   onChange,
   registerName,
   errorObject,
 }) {
+  if (control === null || control === undefined) {
+    return "Control of useForm hook is not provided";
+  }
+  if (typeof registerName !== "string") {
+    return "Register name is not given";
+  }
+  if (typeof errorObject !== "object") {
+    return "Error Object is not given";
+  }
+  if (typeof options !== "object" && !options.length) {
+    return "Options is not an Array";
+  }
   const [open, setOpen] = useState(false);
   const loading = open && options.length === 0;
 
@@ -74,12 +101,15 @@ function AsyncAutoComplete({
         render={({ field }) => (
           <Autocomplete
             {...field}
-            onChange={(event,value) => {field.onChange(value);onChange}}
+            onChange={(event, value) => {
+              field.onChange(value);
+              onChange;
+            }}
             loading={loading}
             onOpen={handleOpen}
             onClose={handleClose}
             sx={autocompleteStyle}
-            isOptionEqualToValue={(option,value) => option === value}
+            isOptionEqualToValue={(option, value) => option === value}
             options={options}
             renderInput={(params) => (
               <TextField
