@@ -1,6 +1,6 @@
 /**Add your frontend common function here */
 // ---------- Check Duplicates Function ------------ //
-const CheckDuplicates = (array) => {
+const checkDuplicates = (array) => {
   if (typeof array !== 'object') {
     return 'Should be an Array or Object'
   }
@@ -8,7 +8,7 @@ const CheckDuplicates = (array) => {
   return removeDuplicates
 };
 // ---------- Open File New Window Function ------------ //
-const OpenFileNewWindow = (fileData) => {
+const openFileNewWindow = (fileData) => {
   if (typeof fileData !== 'string') {
     return 'Uploaded File is Not a String';
   };
@@ -34,22 +34,22 @@ const idMatchLoop = (data, key, value) => {
 };
 
 /**      File Reader Function         */
-const fileReaderFunction = (file,fileType,fileSize,errorMessage) =>{
+const fileReaderFunction = (file, fileType, fileSize, errorMessage) => {
   let fileDatas = {};
   let file = file.target.files[0];
-  let reader = new FileReader ();
+  let reader = new FileReader();
   reader.readAsArrayBuffer(file);
   if (file.target.files.length > 0) {
     return new Promise((resolve, reject) => {
       reader.onload = (event) => {
-          {(!event || !fileType || !fileSize || !errorMessage) && reject("Some arguments are missing")}
-          {typeof fileType !== 'string' && reject("fileType should be a String")}
-          {typeof fileSize !== 'number' && reject("fileSize should be a Number")}
-          {typeof errorMessage !== "object" && reject("errorMessage should be an Object")}
-          {(!errorMessage.NoFileError || !errorMessage.fileTypeErr || !errorMessage.fileSizeErr) && reject("Some Keys of errorMessage Object is missing")}
-          {!file && reject(errorMessage.NoFileError)}
-          {!fileType.includes(file.type) && reject(errorMessage.fileTypeErr)} 
-          {file.size > fileSize && reject(errorMessage.fileSizeErr)}
+        { (!event || !fileType || !fileSize || !errorMessage) && reject("Some arguments are missing") }
+        { typeof fileType !== 'string' && reject("fileType should be a String") }
+        { typeof fileSize !== 'number' && reject("fileSize should be a Number") }
+        { typeof errorMessage !== "object" && reject("errorMessage should be an Object") }
+        { (!errorMessage.NoFileError || !errorMessage.fileTypeErr || !errorMessage.fileSizeErr) && reject("Some Keys of errorMessage Object is missing") }
+        { !file && reject(errorMessage.NoFileError) }
+        { !fileType.includes(file.type) && reject(errorMessage.fileTypeErr) }
+        { file.size > fileSize && reject(errorMessage.fileSizeErr) }
         fileDatas.fileData = event.target.result;
         fileDatas.fileName = file.name;
         fileDatas.fileSize = file.size;
@@ -76,7 +76,7 @@ const fileReaderFunction = (file,fileType,fileSize,errorMessage) =>{
 // };
 
 /**  fetchFunction for fetching Data */
-async function fetchData({ url, method = "GET", headers = {} } = {}, data) {
+const fetchData = async ({ url, method = "GET", headers = {} } = {}, data) => {
   if (typeof url !== "string") {
     return { result: false, data: "URL is null / undefined" };
   }
@@ -107,4 +107,13 @@ async function fetchData({ url, method = "GET", headers = {} } = {}, data) {
   } catch (error) {
     return { result: false, data: error };
   }
+}
+
+
+export {
+  checkDuplicates,
+  openFileNewWindow,
+  idMatchLoop,
+  fileReaderFunction,
+  fetchData
 }
