@@ -1,4 +1,4 @@
-import "./Loader.css"
+import "./Loader.css";
 import Dokologo from './dokologo.png';
 
 const SpinnerLoader = () => {
