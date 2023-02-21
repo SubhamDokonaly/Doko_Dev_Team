@@ -4,6 +4,7 @@
 const isValidRequestBody = function (requestBody) {
     return Object.keys(requestBody).length > 0;
 }
+//Suggestions - Also check for array, undefined, and key
 
 //Valid ObjectId
 const isValidObjectId = function (objectId) {
@@ -30,8 +31,8 @@ function returnFunction (statusData, responseMsg, responseData) {
     return res.send({status: statusData, response: responseMsg, data: responseData})
 }
 
-//Schedule Calculation - scheduleCalculation(lclschedulesData, finalHolidayList)
-const scheduleCalculation = (lclschedulesData, finalHolidayList) => {
+//LCL Schedule Calculation - scheduleCalculation(lclschedulesData, finalHolidayList)
+const lclScheduleCalculation = (lclschedulesData, finalHolidayList) => {
 
     let CFSCutOff, PickCutOff, BookingCutOff,
         CFSCutOffDate, PickCutOffDate, BookingCutOffDate, EtdDate,
@@ -79,6 +80,11 @@ const scheduleCalculation = (lclschedulesData, finalHolidayList) => {
     } while (CfsCutOffHoliday || CfsCutOffWeekend || PickCutOffHoliday || PickCutOffWeekend)
 
     return lclschedulesData
+}
+
+//Air Schedule Calculation - 
+const airScheduleCalculation = () => {
+
 }
 
 //Azure File Share Upload - uploadFileAzure(filePath, lclbookingId, fileNamePath)

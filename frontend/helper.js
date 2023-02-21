@@ -5,14 +5,15 @@ export function CheckDuplicates(array) {
     return removeDuplicates
 };
 
-export function viewFile(file) {
+export function iframeViewFile(fileBase64String) {
     let win = window.open();
     win.document.write(
         '<iframe src="' +
-        file +
+        fileBase64String +
         '" frameborder="0" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;" allowfullscreen></iframe>'
     )
 };
+//Suggestions - Check if string, check if base64 encoding, handle other scenarios
 
 //ID Match Loop - idMatchLoop(originData.origin, '_id', e.pol)
 const idMatchLoop = (data, key, value) => {
@@ -22,12 +23,11 @@ const idMatchLoop = (data, key, value) => {
         }
     }
     return ""
-  }
-
+}
 
 
 /**      File Reader Function         */
-export const fileReaderFunction = (file,fileType,fileSize) =>{
+export const fileReaderFunction = (file,fileType,fileSize, message) =>{
     let fileDatas = {}
     let file = file.target.files[0];
     let reader = new FileReader ();
