@@ -15,3 +15,9 @@ export const containsOnlyAlphabets = (str) => {
     const Alphabet = /^[A-Za-z\s]*$/;
     return Alphabet.test(str);
 };
+
+
+
+export const CamelCaseConverter = (str) => {
+    return str.split(" ").filter((y) => y).map((z) => z = z.charAt(0).toUpperCase() + z.slice(1).toLowerCase()).join(" ");
+}
