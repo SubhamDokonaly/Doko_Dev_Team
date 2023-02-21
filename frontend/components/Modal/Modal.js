@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Modal = (props) => {
-    console.log(props.id,"id")
     return (
         <div>
             <div
@@ -51,3 +50,4 @@ const Modal = (props) => {
 }
 
 export default Modal
+
