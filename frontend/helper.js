@@ -75,8 +75,21 @@ const fileReaderFunction = (file, fileType, fileSize, errorMessage) => {
 //   });
 // };
 
-/**  fetchFunction for fetching Data */
-const fetchData = async ({ url, method = "GET", headers = {} } = {}, data) => {
+/**
+ * Function for fetching Data
+ * @param {Object} fetchObject - Object paramters for fetch function
+ * @param {String} fetchObject.url - URL for fetching data  
+ * @param {String} [fetchObject.method = 'GET'] - Method for fetching data. Default is GET  
+ * @param {Object} [fetchObject.headers = {}] - Headers configuration for fetching data.  
+ * @param {Object} data - Data that can be used for POST call. Method should be POST if data is provided 
+ * @returns {Promise} Promise object which contains result of boolean type and data which can be error or result data of API.
+ * @example 
+ * //For GET
+ * fetchData({url:sampleUrl.com})
+ * //For Others
+ * fetchData({url:sampleUrl.com,method:'POST',headers:{AUTH:AUTH}},[data:{}])
+ */
+const fetchData =  async ({ url, method = "GET", headers = {} } = {}, data) => {
   if (typeof url !== "string") {
     return { result: false, data: "URL is null / undefined" };
   }
@@ -109,9 +122,22 @@ const fetchData = async ({ url, method = "GET", headers = {} } = {}, data) => {
   }
 }
 
+/**
+ * Removes all the spaces in string
+ * @param {string} string String to remove all the spaces 
+ * @returns {string} String
+ */
+const removeSpacesInString = (string) => {
+  if(typeof string !== 'string'){
+    return 'Given parameter is not a string'
+  }
+  return string.replace(/\s/g, "")
+}
+
 
 export {
   checkDuplicates,
+  removeSpacesInString,
   openFileNewWindow,
   idMatchLoop,
   fileReaderFunction,
