@@ -7,6 +7,7 @@ const checkDuplicates = (array) => {
   const removeDuplicates = [...new Set(array.map((e) => JSON.stringify(e)))].map((e) => JSON.parse(e))
   return removeDuplicates
 };
+
 // ---------- Open File New Window Function ------------ //
 const openFileNewWindow = (fileData) => {
   if (typeof fileData !== 'string') {
@@ -33,7 +34,6 @@ const openFileNewWindow = (fileData) => {
 // catch (e) {
 //   console.log('Error: ', e)
 // }
-
 const keyMatchLoop = (key, data, value) => {
   if (data.length === undefined || data.length === 0) {
     throw { 
@@ -44,7 +44,7 @@ const keyMatchLoop = (key, data, value) => {
        'Data cannot be Empty'
     }
   }
-  else if (key.length === undefined || (key === ' ' || key.length === 0 || key.indexOf(' ') >= 0)) {
+  else if (key.length === undefined || (key.length === 0 || key.indexOf(' ') >= 0)) {
     throw { 
       errorCode: 'IDLER02', 
       errorMessage: 'Invalid arguments passed',
@@ -54,7 +54,7 @@ const keyMatchLoop = (key, data, value) => {
       'Key must be of the type String'
     }
   }
-  else if (!value || value.length === 0)  {
+  else if (!value || value.length === 0)  {  
     throw { 
       errorCode: 'IDLER03', 
       errorMessage: 'Invalid arguments passed',
@@ -192,7 +192,7 @@ export {
   checkDuplicates,
   removeSpacesInString,
   openFileNewWindow,
-  idMatchLoop,
+  keyMatchLoop,
   fileReaderFunction,
   fetchData,
   trimString,
