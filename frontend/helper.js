@@ -125,7 +125,7 @@ const fileReaderFunction = (file, fileType, fileSize, errorMessage) => {
  * //For Others
  * fetchData({url:sampleUrl.com,method:'POST',headers:{AUTH:AUTH}},[data:{}])
  */
-const fetchData =  async ({ url, method = "GET", headers = {} } = {}, data) => {
+const fetchData = async ({ url, method = "GET", headers = {} } = {}, data) => {
   if (typeof url !== "string") {
     return { result: false, data: "URL is null / undefined" };
   }
@@ -159,18 +159,18 @@ const fetchData =  async ({ url, method = "GET", headers = {} } = {}, data) => {
 }
 
 //Trim the unwanted space from string
-const trimString = (string)=>{
-    if ( typeof string !== "string"){
-      return "DataType should be a string"
-    }
-    return string.trim();
+const trimString = (string) => {
+  if (typeof string !== "string") {
+    return "DataType should be a string"
+  }
+  return string.trim();
 }
 
 //Combine Array
-const combineArray =  (...args) => {
+const combineArray = (...args) => {
   const array = [...args]
-  if(array.length <=1 ){
-      return "Send more than an array"
+  if (array.length <= 1) {
+    return "Send more than an array"
   }
   return [...args].flat();
 }
@@ -181,10 +181,17 @@ const combineArray =  (...args) => {
  * @returns {string} String
  */
 const removeSpacesInString = (string) => {
-  if(typeof string !== 'string'){
+  if (typeof string !== 'string') {
     return 'Given parameter is not a string'
   }
   return string.replace(/\s/g, "")
+}
+
+const convertLowerRemoveSpacesInString = (string) => {
+  if (typeof string !== 'string') {
+    return "Given parameter is not a string"
+  }
+  return string.toLocaleLowerCase().replace(/\s/g, "");
 }
 
 
@@ -196,5 +203,6 @@ export {
   fileReaderFunction,
   fetchData,
   trimString,
-  combineArray
+  combineArray,
+  convertLowerRemoveSpacesInString
 }
