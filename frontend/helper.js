@@ -158,5 +158,7 @@ export {
   openFileNewWindow,
   idMatchLoop,
   fileReaderFunction,
-  fetchData
+  fetchData,
+  trimString,
+  combineArray
 }
