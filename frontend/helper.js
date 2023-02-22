@@ -122,6 +122,23 @@ const fetchData =  async ({ url, method = "GET", headers = {} } = {}, data) => {
   }
 }
 
+//Trim the unwanted space from string
+const trimString = (string)=>{
+    if ( typeof string !== "string"){
+      return "DataType should be a string"
+    }
+    return string.trim();
+}
+
+//Combine Array
+const combineArray =  (...args) => {
+  const array = [...args]
+  if(array.length <=1 ){
+      return "Send more than an array"
+  }
+  return [...args].flat();
+}
+
 /**
  * Removes all the spaces in string
  * @param {string} string String to remove all the spaces 
@@ -141,5 +158,7 @@ export {
   openFileNewWindow,
   idMatchLoop,
   fileReaderFunction,
-  fetchData
+  fetchData,
+  trimString,
+  combineArray
 }
