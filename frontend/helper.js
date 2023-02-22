@@ -107,3 +107,20 @@ async function fetchData({ url, method = "GET", headers = {} } = {}, data) {
     return { result: false, data: error };
   }
 }
+
+//Trim the unwanted space from string
+const trimString = (string)=>{
+    if ( typeof string !== "string"){
+      return "DataType should be a string"
+    }
+    return string.trim();
+}
+
+//Combine Array
+const combineArray =  (...args) => {
+  const array = [...args]
+  if(array.length <=1 ){
+      return "Send more than an array"
+  }
+  return [...args].flat();
+}
