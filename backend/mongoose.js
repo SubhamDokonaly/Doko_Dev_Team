@@ -105,6 +105,20 @@ async function deleteManyDocument(collection, filter, options) {
     }
 }
 
+export {
+    updateDocument,
+    findDocuments,
+    findAndSelect,
+    findSingleDocument,
+    insertManyDocuments,
+    insertSingleDocument,
+    updateOneDocument,
+    findByIdAndUpdate,
+    getDistinctValues,
+    deleteOneDocument,
+    deleteManyDocument
+}
+
 
 
 
