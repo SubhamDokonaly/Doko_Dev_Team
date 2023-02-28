@@ -24,14 +24,50 @@ const openFileNewWindow = (fileData) => {
 };
 //Suggestions - Check if string, check if base64 encoding, handle other scenarios
 
-const idMatchLoop = (data, key, value) => {
-  for (let i = 0; i < data.length; i++) {
-    if (data[i][key] === value) {
-      return [data[i]];
+
+// Key Match Loop - Function Call with Definition
+// try {
+//   oData = keyMatchLoop('_id', originPickDatas.origin, bookingData.lclbookingQuotes.routing.rOrigin)
+//   POL = oData.oCode.toUpperCase() + '(' + oData.oName + ')'
+// }
+// catch (e) {
+//   console.log('Error: ', e)
+// }
+
+const keyMatchLoop = (key, data, value) => {
+  if (data.length === undefined || data.length === 0) {
+    throw { 
+      errorCode: 'IDLER01', 
+      errorMessage: 'Invalid arguments passed',
+      error: !Array.isArray(data) ?
+       'Data must be of the type Array' :
+       'Data cannot be Empty'
     }
   }
-  return "";
-};
+  else if (key.length === undefined || (key === ' ' || key.length === 0 || key.indexOf(' ') >= 0)) {
+    throw { 
+      errorCode: 'IDLER02', 
+      errorMessage: 'Invalid arguments passed',
+      error: key.length >= 0 ? (
+        key.indexOf(' ') >= 0 ? 'Key cannot have white spaces' : 'Key cannot be empty'
+      ) :
+      'Key must be of the type String'
+    }
+  }
+  else if (!value || value.length === 0)  {
+    throw { 
+      errorCode: 'IDLER03', 
+      errorMessage: 'Invalid arguments passed',
+      error: 'Value cannot be empty'
+    }
+  }
+  for (let i = 0; i < data.length; i++) {
+    if (data[i][key] === value) {
+      return data[i]
+    }
+  }
+  return "Not found";
+}
 
 /**      File Reader Function         */
 const fileReaderFunction = (file, fileType, fileSize, errorMessage) => {
@@ -89,7 +125,7 @@ const fileReaderFunction = (file, fileType, fileSize, errorMessage) => {
  * //For Others
  * fetchData({url:sampleUrl.com,method:'POST',headers:{AUTH:AUTH}},[data:{}])
  */
-const fetchData =  async ({ url, method = "GET", headers = {} } = {}, data) => {
+const fetchData = async ({ url, method = "GET", headers = {} } = {}, data) => {
   if (typeof url !== "string") {
     return { result: false, data: "URL is null / undefined" };
   }
@@ -123,18 +159,18 @@ const fetchData =  async ({ url, method = "GET", headers = {} } = {}, data) => {
 }
 
 //Trim the unwanted space from string
-const trimString = (string)=>{
-    if ( typeof string !== "string"){
-      return "DataType should be a string"
-    }
-    return string.trim();
+const trimString = (string) => {
+  if (typeof string !== "string") {
+    return "DataType should be a string"
+  }
+  return string.trim();
 }
 
 //Combine Array
-const combineArray =  (...args) => {
+const combineArray = (...args) => {
   const array = [...args]
-  if(array.length <=1 ){
-      return "Send more than an array"
+  if (array.length <= 1) {
+    return "Send more than an array"
   }
   return [...args].flat();
 }
@@ -145,10 +181,17 @@ const combineArray =  (...args) => {
  * @returns {string} String
  */
 const removeSpacesInString = (string) => {
-  if(typeof string !== 'string'){
+  if (typeof string !== 'string') {
     return 'Given parameter is not a string'
   }
   return string.replace(/\s/g, "")
+}
+
+const convertLowerRemoveSpacesInString = (string) => {
+  if (typeof string !== 'string') {
+    return "Given parameter is not a string"
+  }
+  return string.toLocaleLowerCase().replace(/\s/g, "");
 }
 
 
@@ -160,5 +203,6 @@ export {
   fileReaderFunction,
   fetchData,
   trimString,
-  combineArray
+  combineArray,
+  convertLowerRemoveSpacesInString
 }

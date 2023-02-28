@@ -207,6 +207,35 @@ const createMilestoneFile = async (filePath, fileData, fileEncoding) => {
   await fs.writeFile(filePath, fileData, { encoding: fileEncoding })
 }
 
+function hasDuplicates(array) {
+	var valuesSoFar = [];
+	for (var i = 0; i < array.length; ++i) {
+		var value = array[i];
+		if (valuesSoFar.indexOf(value) !== -1) {
+			return true
+		}
+		valuesSoFar.push(value);
+	}
+	return false;
+}
+function duplicate(arr,keys){
+	    let store=[]
+	    let duplicate
+	    arr.map((el)=>{
+	        let str=""
+	        keys.forEach((e)=>{
+	          str+=el[e]
+	        })
+	        if(!store.includes(str)){
+	            store.push(str)
+	        }else{
+	            duplicate=true
+	        }
+	    })
+	    if(duplicate){
+	        return true
+	    }
+	}
 
 export {
   isValidRequestBody,
@@ -217,6 +246,8 @@ export {
   uploadFileAzure,
   downloadFileAzure,
   createDir,
-  createMilestoneFile
+  createMilestoneFile,
+  hasDuplicates,
+  duplicate
 }
 
