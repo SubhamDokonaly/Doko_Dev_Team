@@ -78,7 +78,7 @@ const fileReaderFunction = (file, fileType, fileSize, errorMessage) => {
   if (file.target.files.length > 0) {
     return new Promise((resolve, reject) => {
       reader.onload = (event) => {
-        { (!event || !fileType || !fileSize || !errorMessage) && reject("Some arguments are missing") }
+        { (!fileType || !fileSize || !errorMessage) && reject("Some arguments are missing") }
         { typeof fileType !== 'string' && reject("fileType should be a String") }
         { typeof fileSize !== 'number' && reject("fileSize should be a Number") }
         { typeof errorMessage !== "object" && reject("errorMessage should be an Object") }
